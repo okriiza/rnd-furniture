@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.product.index');
+        $products = Product::all();
+        return view('pages.admin.product.index', compact('products'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.product.create');
     }
 
     /**
@@ -35,7 +38,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //create validation product
+        $request->validate([
+            'name_product' => 'required',
+            'price_product' => 'required',
+            'stock_product' => 'required',
+            'image_product' => 'required',
+        ]);
+
+        //creata product
+        Product::create([
+            'name_product' => $request->name_product,
+            'slug_product' => Str::slug($request->name_product . '-' . time()),
+            'price_product' => $request->price_product,
+            'stock_product' => $request->stock_product,
+            'image_product' => $request->file('image_product')->store('assets/image_product', 'public'),
+            // 'image_product' => $request->image_product ? $request->file('image_product')->store('assets/image_product', 'public') : null,
+        ]);
+
+        return redirect()->route('product.index')->with('success', 'Product created successfully.');
     }
 
     /**

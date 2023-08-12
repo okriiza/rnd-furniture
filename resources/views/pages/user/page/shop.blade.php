@@ -28,118 +28,22 @@
         <div class="container">
             <div class="row">
 
-                <!-- Start Column 1 -->
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="{{ asset('themes/user/images/product-3.png') }}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Nordic Chair</h3>
-                        <strong class="product-price">$50.00</strong>
+                @foreach ($products as $item)
+                    <!-- Start Column 1 -->
+                    <div class="col-12 col-md-4 col-lg-3 mb-5">
+                        <a class="product-item" href="{{ route('addToCart', $item->id) }}">
+                            <img src="{{ Storage::url($item->image_product) }}" alt="{{ $item->name_product }}"
+                                class="img-fluid product-thumbnail">
+                            <h3 class="product-title">{{ $item->name_product }}</h3>
+                            <strong class="product-price">Rp. {{ number_format($item->price_product) }}</strong>
 
-                        <span class="icon-cross">
-                            <img src="{{ asset('themes/user/images/cross.svg') }}" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-                <!-- End Column 1 -->
-
-                <!-- Start Column 2 -->
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="{{ asset('themes/user/images/product-1.png') }}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Nordic Chair</h3>
-                        <strong class="product-price">$50.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="{{ asset('themes/user/images/cross.svg') }}" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-                <!-- End Column 2 -->
-
-                <!-- Start Column 3 -->
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="{{ asset('themes/user/images/product-2.png') }}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Kruzo Aero Chair</h3>
-                        <strong class="product-price">$78.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="{{ asset('themes/user/images/cross.svg') }}" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-                <!-- End Column 3 -->
-
-                <!-- Start Column 4 -->
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="{{ asset('themes/user/images/product-3.png') }}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Ergonomic Chair</h3>
-                        <strong class="product-price">$43.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="{{ asset('themes/user/images/cross.svg') }}" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-                <!-- End Column 4 -->
-
-
-                <!-- Start Column 1 -->
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="{{ asset('themes/user/images/product-3.png') }}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Nordic Chair</h3>
-                        <strong class="product-price">$50.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="{{ asset('themes/user/images/cross.svg') }}" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-                <!-- End Column 1 -->
-
-                <!-- Start Column 2 -->
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="{{ asset('themes/user/images/product-1.png') }}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Nordic Chair</h3>
-                        <strong class="product-price">$50.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="{{ asset('themes/user/images/cross.svg') }}" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-                <!-- End Column 2 -->
-
-                <!-- Start Column 3 -->
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="{{ asset('themes/user/images/product-2.png') }}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Kruzo Aero Chair</h3>
-                        <strong class="product-price">$78.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="{{ asset('themes/user/images/cross.svg') }}" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-                <!-- End Column 3 -->
-
-                <!-- Start Column 4 -->
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="{{ asset('themes/user/images/product-3.png') }}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Ergonomic Chair</h3>
-                        <strong class="product-price">$43.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="{{ asset('themes/user/images/cross.svg') }}" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-                <!-- End Column 4 -->
+                            <span class="icon-cross">
+                                <img src="{{ asset('themes/user/images/cross.svg') }}" class="img-fluid">
+                            </span>
+                        </a>
+                    </div>
+                    <!-- End Column 1 -->
+                @endforeach
 
             </div>
         </div>

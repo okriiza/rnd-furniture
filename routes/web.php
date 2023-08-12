@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\LandingController;
+use App\Http\Controllers\User\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])
         ->name('dashboard');
-    Route::get('/product', [ProductController::class, 'index'])
-        ->name('product.index');
+    Route::resource('product', ProductController::class);
 });
 
 
@@ -43,6 +44,20 @@ Route::controller(LandingController::class)->group(function () {
         ->name('checkout');
 });
 
+route::get('add-to-cart/{id}', [CartController::class, 'addCart'])
+    ->name('addToCart');
+route::get('plus/{id}', [CartController::class, 'plus'])
+    ->name('plus');
+route::get('minus/{id}', [CartController::class, 'minus'])
+    ->name('minus');
+route::get('store', [CartController::class, 'store'])
+    ->name('store');
+
+Route::post('notification/handling', [TransactionController::class, 'midtransHandler'])
+    ->name('notificationHandling');
+
+Route::get('payment/finish', [TransactionController::class, 'finish'])
+    ->name('finish');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -29,11 +31,17 @@ class LandingController extends Controller
     }
     public function shop()
     {
-        return view('pages.user.page.shop');
+        $products = Product::all();
+        return view('pages.user.page.shop', compact('products'));
     }
     public function cart()
     {
-        return view('pages.user.cart');
+        $total = 0;
+        $cart = Cart::with('product')->get();
+        foreach ($cart as $cartProduct) {
+            $total += $cartProduct->product->price_product * $cartProduct->quantity;
+        }
+        return view('pages.user.cart', compact('cart', 'total'));
     }
     public function checkout()
     {
